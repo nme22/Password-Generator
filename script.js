@@ -1,15 +1,19 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-var letterU = "qwertyuiopasdfghjklzxcvbnm";
-var letterL = "QWERTYUIOPASDFGHJKLZXCVBNNM";
-var number = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-var specialCharacter = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
-var lengthPassword = ""
+
+var letterU = "QWERTYUIOPASDFGHJKLZXCVBNNM";
+var letterL = "qwertyuiopasdfghjklzxcvbnm";
+var number = "0123456789"
+var specialCharacter = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
+var password = [letterU, letterL, number, specialCharacter, password];
 
 
 // Write password to the #password input
 function writePassword() {
+  var confirmLength = prompt("Pick a length between 8 and 128 characters")
+  console.log(confirmLength);
+
   var confirmUppercase = confirm("Uppercase letters?")
   console.log(confirmUppercase);
 
@@ -17,18 +21,16 @@ function writePassword() {
   console.log(confirmLowercase);
 
   var confirmNumber = confirm("Number?")
-  console.log(number);
+  console.log(confirmNumber);
 
   var confirmSpecial = confirm("Special Characters?")
-  console.log(specialCharacter);
+  console.log(confirmSpecial);
 
-  var lengthPassword = prompt("How long do you want the password to be?")
-  console.log(specialCharacter);
+  password = document.getElementById("password");
 }
 
-function generatePassword() {
+function generatePassword()
 
-}
 
 // Math.random().toString()
 
