@@ -18,26 +18,40 @@ function writePassword() {
     var confirmLength = prompt("Pick a length between 8 and 128 characters");
     inputSize = confirmLength;
   }
+  loop1:
+  while (true) {
+    var confirmUppercase = confirm("Uppercase letters?");
+    console.log(confirmUppercase);
 
-  var confirmUppercase = confirm("Uppercase letters?");
-  console.log(confirmUppercase);
+    var confirmLowercase = confirm("Lowercase letters?");
+    console.log(confirmLowercase);
 
-  var confirmLowercase = confirm("Lowercase letters?");
-  console.log(confirmLowercase);
+    var confirmNumber = confirm("Numbers?");
+    console.log(confirmNumber);
 
-  var confirmNumber = confirm("Numbers?");
-  console.log(confirmNumber);
+    var confirmSpecial = confirm("Special Characters?");
+    console.log(confirmSpecial);
 
-  var confirmSpecial = confirm("Special Characters?");
-  console.log(confirmSpecial);
+    confirmPassword = [
+      confirmUppercase,
+      confirmLowercase,
+      confirmNumber,
+      confirmSpecial];
+    loop2:
+    for (var i = 0; i < confirmPassword.length; i++) {
+      if (confirmPassword[i]) {
+        break loop1;
+      }
+    }
+  }
 
-  confirmPassword = [
-    confirmUppercase,
-    confirmLowercase,
-    confirmNumber,
-    confirmSpecial];
 }
 
+// function generateRandom(min, max) {
+//   min = Math.ceil(8);
+//   max = Math.floor(128);
+//   return Math.floor(Math.random() * (max - min + 1)) + min;
+// }
 
 
 
@@ -62,7 +76,8 @@ generateBtn.addEventListener("click", writePassword);
 // function that prompts the user
 // how many characters we want the password to be?
 // we need to  check to make sure they chose between 8 -128 characters
-// next we will prompt them for what chracters they want. will be a confirm prompt for all 4 arrays.
+
+// next we will prompt them for what characters they want. will be a confirm prompt for all 4 arrays.
 // Write a conditional statement that that the user pick at least one character type for password.
 // we need an object to store the user input. Meaning the length, what character will be used in password.
 // return the object of possible choices.
