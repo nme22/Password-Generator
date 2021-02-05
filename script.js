@@ -1,19 +1,16 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-
+// Global variables set to strings with the criteria
 var letterU = "QWERTYUIOPASDFGHJKLZXCVBNNM";
 var letterL = "qwertyuiopasdfghjklzxcvbnm";
 var number = "0123456789"
 var specialCharacter = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
-var password = [letterU, letterL, number, specialCharacter, password];
+
 
 
 // Write password to the #password input
 function writePassword() {
-  var confirmLength = prompt("Pick a length between 8 and 128 characters")
-  console.log(confirmLength);
-
   var confirmUppercase = confirm("Uppercase letters?")
   console.log(confirmUppercase);
 
@@ -26,18 +23,26 @@ function writePassword() {
   var confirmSpecial = confirm("Special Characters?")
   console.log(confirmSpecial);
 
-  password = document.getElementById("password");
+  var confirmLength = prompt("Pick a length between 8 and 128 characters")
+  console.log(typeof parseInt(confirmLength));
+
+  var password = [letterU, letterL, number, specialCharacter];
+  return password;
+};
+
+
+function generatePassword() {
+  var {
+    confirmUppercase,
+    confirmLowercase,
+    confirmNumber,
+    confirmSpecial,
+  } = writePassword();
 }
-
-function generatePassword()
-
 
 // Math.random().toString()
 
 var password = generatePassword()
-
-
-
 var passwordText = document.querySelector("#password");
 
 passwordText.value = password;
