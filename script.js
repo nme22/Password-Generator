@@ -26,28 +26,28 @@ function writePassword() {
   var confirmLength = prompt("Pick a length between 8 and 128 characters")
   console.log(typeof parseInt(confirmLength));
 
-  var password = [letterU, letterL, number, specialCharacter];
+  password = [letterU, letterL, number, specialCharacter];
   return password;
 };
 
 
 function generatePassword() {
-  var {
-    confirmUppercase,
-    confirmLowercase,
-    confirmNumber,
-    confirmSpecial,
-  } = writePassword();
+  //   var {
+  //     confirmUppercase,
+  //     confirmLowercase,
+  //     confirmNumber,
+  //     confirmSpecial,
+  //   } = writePassword();
 }
 
 // Math.random().toString()
 
-var password = generatePassword()
-var passwordText = document.querySelector("#password");
+// var password = generatePassword()
+// var passwordText = document.querySelector("#password");
 
-passwordText.value = password;
+// passwordText.value = password;
 
 
 
-// Add event listener to generate button
+// // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
