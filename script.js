@@ -6,39 +6,40 @@ var letterU = "QWERTYUIOPASDFGHJKLZXCVBNNM";
 var letterL = "qwertyuiopasdfghjklzxcvbnm";
 var number = "0123456789"
 var specialCharacter = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
-
+var password = [letterU, letterL, number, specialCharacter];
+var passwordText = ""
 
 
 // Write password to the #password input
-function writePassword() {
+function writePassword(password) {
   var confirmUppercase = confirm("Uppercase letters?")
   console.log(confirmUppercase);
 
   var confirmLowercase = confirm("Lowercase letters?")
   console.log(confirmLowercase);
 
-  var confirmNumber = confirm("Number?")
+  var confirmNumber = confirm("Numbers?")
   console.log(confirmNumber);
 
   var confirmSpecial = confirm("Special Characters?")
   console.log(confirmSpecial);
 
   var confirmLength = prompt("Pick a length between 8 and 128 characters")
-  console.log(typeof parseInt(confirmLength));
+  console.log(confirmLength);
 
-  password = [letterU, letterL, number, specialCharacter];
-  return password;
+  return writePassword;
 };
 
 
 function generatePassword() {
-  //   var {
-  //     confirmUppercase,
-  //     confirmLowercase,
-  //     confirmNumber,
-  //     confirmSpecial,
-  //   } = writePassword();
+  while (confirmLength <= 128, confirmLength >= 8) {
+    passwordText += writePassword(Math.floor(Math.random() * password * confirmLength))
+    console.log(generatePassword)
+  }
+
+
 }
+
 
 // Math.random().toString()
 
