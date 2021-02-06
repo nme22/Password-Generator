@@ -15,11 +15,17 @@ var passwordTextarea = document.getElementById("password")
 
 // Write password to the #password input
 function writePassword() {
+  // If the passwordTextarea has any value, clear it and the passwordText.
   if (passwordTextarea.value.length > 0) {
     passwordTextarea.value = "";
     passwordText = "";
   } else {
+    // Otherwise, run the rest of the writePassword function.
     confirmLength = prompt("Pick a length between 8 and 128 characters");
+    /* 
+    If the length of the input is greater than or equal to 8 AND if the length of the input
+    is less than or equal to 128. Then run the rest of the function.
+    */
     if (confirmLength >= 8 && confirmLength <= 128) {
       while (true) {
         var confirmUppercase = confirm("Uppercase letters?");
@@ -59,6 +65,8 @@ function writePassword() {
       }
       passwordTextarea.value = passwordText;
     } else {
+      /* If the passwordTextarea value doesn't meet the criteria of being between
+       or equal to 8 & 128;use recursion */
       writePassword();
     }
   }
@@ -66,23 +74,3 @@ function writePassword() {
 }
 
 generateBtn.addEventListener("click", writePassword);
-
-
-
-
-// Pseudo code for password generator
-// Need an array of different choices for the characters
-// array for uppercase, lowercase, numbers, special characters
-// function that prompts the user
-// how many characters we want the password to be?
-// we need to  check to make sure they chose between 8 -128 characters
-// next we will prompt them for what characters they want. will be a confirm prompt for all 4 arrays.
-// Write a conditional statement that the user picks at least one character type for password.
-
-// we need an object to store the user input. Meaning the length, what character will be used in password.
-// return the object of possible choices.
-// write a function to randomize the letters inside that we can give the password. ( Use math.random to generate that)
-// Then we will create another function- make an array w the results, an array for possible characters , and set an array for guarenteed chracters ( characters guarenteed for pw).
-// create a loop that goes through the result array. ( need to Look up push and join)
-// Once we push into a new array (result array), using join we will take the chracter from results array and turn into a string
-//After we turn into a string, we write the password to the page (.value)
