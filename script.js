@@ -7,59 +7,62 @@ var letterL = "qwertyuiopasdfghjklzxcvbnm";
 var number = "0123456789"
 var specialCharacter = "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
 var password = [letterU, letterL, number, specialCharacter];
-var inputSize = -1;
+let confirmLength = 0;
 var passwordText = "";
 var confirmPassword;
 var allowed = "";
+var passwordTextarea = document.getElementById("password")
 
 // Write password to the #password input
 function writePassword() {
+  if (passwordTextarea.value.length > 0) {
+    passwordTextarea.value = "";
+    passwordText = "";
+  } else {
+    confirmLength = prompt("Pick a length between 8 and 128 characters");
+    if (confirmLength >= 8 && confirmLength <= 128) {
+      while (true) {
+        var confirmUppercase = confirm("Uppercase letters?");
+        console.log(confirmUppercase);
 
-  while (inputSize < 8 || inputSize > 128) {
-    var confirmLength = prompt("Pick a length between 8 and 128 characters");
-    inputSize = confirmLength;
-  }
-  loop1:
-  while (true) {
-    var confirmUppercase = confirm("Uppercase letters?");
-    console.log(confirmUppercase);
+        var confirmLowercase = confirm("Lowercase letters?");
+        console.log(confirmLowercase);
 
-    var confirmLowercase = confirm("Lowercase letters?");
-    console.log(confirmLowercase);
+        var confirmNumber = confirm("Numbers?");
+        console.log(confirmNumber);
 
-    var confirmNumber = confirm("Numbers?");
-    console.log(confirmNumber);
+        var confirmSpecial = confirm("Special Characters?");
+        console.log(confirmSpecial);
 
-    var confirmSpecial = confirm("Special Characters?");
-    console.log(confirmSpecial);
-
-    confirmPassword = [
-      confirmUppercase,
-      confirmLowercase,
-      confirmNumber,
-      confirmSpecial];
-    loop2:
-    for (var i = 0; i < confirmPassword.length; i++) {
-      if (confirmPassword[i]) {
-        break loop1;
+        confirmPassword = [
+          confirmUppercase,
+          confirmLowercase,
+          confirmNumber,
+          confirmSpecial];
+        console.log(confirmPassword.length);
+        if (confirmPassword.length >= 1) {
+          break;
+        }
       }
+      var findex = 0;
+      for (var i = 0; i < confirmPassword.length; i++) {
+        if (confirmPassword[i]) {
+          var index = Math.floor(Math.random() * password[i].length);
+          passwordText = passwordText + password[i][index];
+          allowed = allowed + password[i];
+          findex++;
+        };
+      }
+      for (var i = findex; i < confirmLength; i++) {
+        var index = Math.floor(Math.random() * allowed.length);
+        passwordText = passwordText + allowed[index];
+      }
+      passwordTextarea.value = passwordText;
+    } else {
+      writePassword();
     }
   }
-  var findex = 0;
-  for (var i = 0; i < confirmPassword.length; i++) {
-    if (confirmPassword[i]) {
-      var index = Math.floor(Math.random() * password[i].length);
-      passwordText = passwordText + password[i][index];
-      allowed = allowed + password[i];
-      findex++;
-    };
-  }
-  for (var i = findex; i < inputSize; i++) {
-    var index = Math.floor(Math.random() * allowed.length);
-    passwordText = passwordText + allowed[index];
-  }
-  document.getElementById("password").textContent = passwordText;
-  inputSize = -1;
+
 }
 
 generateBtn.addEventListener("click", writePassword);
