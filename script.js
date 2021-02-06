@@ -10,6 +10,7 @@ var password = [letterU, letterL, number, specialCharacter];
 var inputSize = -1;
 var passwordText = "";
 var confirmPassword;
+var allowed = "";
 
 // Write password to the #password input
 function writePassword() {
@@ -44,27 +45,23 @@ function writePassword() {
       }
     }
   }
-
+  var findex = 0;
+  for (var i = 0; i < confirmPassword.length; i++) {
+    if (confirmPassword[i]) {
+      var index = Math.floor(Math.random() * password[i].length);
+      passwordText = passwordText + password[i][index];
+      allowed = allowed + password[i];
+      findex++;
+    };
+  }
+  for (var i = findex; i < inputSize; i++) {
+    var index = Math.floor(Math.random() * allowed.length);
+    passwordText = passwordText + allowed[index];
+  }
+  document.getElementById("password").textContent = passwordText;
+  inputSize = -1;
 }
 
-// function generateRandom(min, max) {
-//   min = Math.ceil(8);
-//   max = Math.floor(128);
-//   return Math.floor(Math.random() * (max - min + 1)) + min;
-// }
-
-
-
-// Math.random().toString()
-
-// var password = generatePassword()
-// var passwordText = document.querySelector("#password");
-
-// passwordText.value = password;
-
-
-
-// // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 
@@ -76,9 +73,9 @@ generateBtn.addEventListener("click", writePassword);
 // function that prompts the user
 // how many characters we want the password to be?
 // we need to  check to make sure they chose between 8 -128 characters
-
 // next we will prompt them for what characters they want. will be a confirm prompt for all 4 arrays.
-// Write a conditional statement that that the user pick at least one character type for password.
+// Write a conditional statement that the user picks at least one character type for password.
+
 // we need an object to store the user input. Meaning the length, what character will be used in password.
 // return the object of possible choices.
 // write a function to randomize the letters inside that we can give the password. ( Use math.random to generate that)
